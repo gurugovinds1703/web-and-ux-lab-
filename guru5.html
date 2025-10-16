@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DOM Manipulation — Live Exercise</title>
+  <!-- Google Fonts: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      --primary-color: #3498db;
+      --secondary-color: #2ecc71;
+      --accent-color: #e74c3c;
+      --bg-color: #ecf0f1;
+      --card-bg-color: #ffffff;
+      --hover-bg-color: #f5f5f5;
+      --button-bg-color: #2980b9;
+      --highlight-bg: linear-gradient(90deg, rgba(255, 230, 150, 0.6), rgba(255, 255, 255, 0.0));
+      --button-hover-bg: #3498db;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      max-width: 900px;
+      margin: 32px auto;
+      padding: 16px;
+      background: linear-gradient(135deg, #f0f4f8, #dfe6e9);
+      font-size: 16px;
+      color: #333;
+    }
+
+    header {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      color: var(--primary-color);
+      font-size: 28px;
+    }
+
+    header h1 {
+      font-weight: 600;
+    }
+
+    header small {
+      color: var(--secondary-color);
+      font-size: 16px;
+    }
+
+    .card {
+      border: 1px solid #ddd;
+      padding: 16px;
+      border-radius: 12px;
+      margin-top: 20px;
+      background-color: var(--card-bg-color);
+      box-shadow: 0 8px 16px var(--shadow-color);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 12px 24px var(--shadow-color);
+    }
+
+    .card h2 {
+      color: var(--primary-color);
+      margin-bottom: 12px;
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    button {
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #bbb;
+      background-color: var(--button-bg-color);
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: var(--button-hover-bg);
+      transform: translateY(-2px);
+    }
+
+    input[type="text"] {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: calc(100% - 32px);
+      margin-top: 12px;
+      font-size: 16px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--primary-color);
+      outline: none;
+    }
+
+    ul {
+      padding-left: 20px;
+      font-size: 16px;
+    }
+
+    li {
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+    }
+
+    li button.remove {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    li button.remove:hover {
+      background-color: darkred;
+      transform: translateY(-2px);
+    }
+
+    .highlight {
+      background: var(--highlight-bg);
+    }
+
+    #toggleBtn {
+      background-color: var(--secondary-color);
+    }
+
+    #toggleBtn:hover {
+      background-color: #27ae60;
+    }
+
+    /* Section-specific styling */
+    #textCard {
+      background-color: #f9f9f9;
+    }
+
+    #inputCard {
+      background-color: #f2f8ff;
+    }
+
+    #listCard {
+      background-color: #f1f8f2;
+    }
+
+    #createCard {
+      background-color: #fff0f0;
+    }
+
+    #toggleCard {
+      background-color: #eaf5f7;
+    }
+
+    /* Animation for created image */
+    #createdArea img {
+      border-radius: 12px;
+      box-shadow: 0 6px 12px var(--shadow-color);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    #createdArea img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Accessible focus states for keyboard users */
+    input:focus, button:focus {
+      outline: 2px solid var(--primary-color);
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DOM Manipulation — Live Exercise</h1>
+    <small>Practice: create / update / remove elements & attributes</small>
+  </header>
+
+  <!-- Section 1: Changing text content -->
+  <section class="card" id="textCard">
+    <h2>Update text content</h2>
+    <p id="intro">This text will be changed when you click the button below.</p>
+    <button id="changeTextBtn">Change text</button>
+  </section>
+
+  <!-- Section 2: Using user input to update DOM -->
+  <section class="card" id="inputCard">
+    <h2>Use input to update DOM</h2>
+    <label>
+      New heading: <input type="text" id="headingInput" placeholder="Type a new heading" />
+    </label>
+    <button id="applyHeading">Apply</button>
+    <h3 id="liveHeading">Original heading</h3>
+  </section>
+
+  <!-- Section 3: Add / remove list items -->
+  <section class="card" id="listCard">
+    <h2>Manage a list</h2>
+    <input type="text" id="itemInput" placeholder="New todo item" />
+    <button id="addItem">Add item</button>
+    <button id="clearList">Clear list</button>
+    <ul id="todoList">
+      <li>Example item 1 <button class="remove">Remove</button></li>
+      <li>Example item 2 <button class="remove">Remove</button></li>
+    </ul>
+  </section>
+
+  <!-- Section 4: Create element & attributes -->
+  <section class="card" id="createCard">
+    <h2>Create element & attributes</h2>
+    <button id="createImgBtn">Create image element</button>
+    <div id="createdArea"></div>
+  </section>
+
+  <!-- Section 5: Toggle class and styles -->
+  <section class="card" id="toggleCard">
+    <h2>Toggle classes & attributes</h2>
+    <p id="togText">Click the toggle button to highlight this paragraph.</p>
+    <button id="toggleBtn">Toggle highlight</button>
+  </section>
+
+  <script>
+    // --- Helper: select shortcuts ---
+    const $ = (sel, ctx = document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+
+    // 1) Change text content
+    const changeTextBtn = $('#changeTextBtn');
+    const intro = $('#intro');
+    changeTextBtn.addEventListener('click', () => {
+      intro.textContent = 'Text has been updated at ' + new Date().toLocaleTimeString();
+    });
+
+    // 2) Use input to update DOM (and demonstrate .value and .innerHTML)
+    $('#applyHeading').addEventListener('click', () => {
+      const val = $('#headingInput').value.trim();
+      const live = $('#liveHeading');
+      if (!val) {
+        live.textContent = 'Original heading';
+        return;
+      }
+      live.textContent = val;
+    });
+
+    // 3) Add/remove list items with event delegation
+    const todoList = $('#todoList');
+    $('#addItem').addEventListener('click', () => {
+      const text = $('#itemInput').value.trim();
+      if (!text) return;
+      const li = document.createElement('li');
+      li.innerHTML = `${escapeHtml(text)} <button class="remove">Remove</button>`;
+      todoList.appendChild(li);
+     
