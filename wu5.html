@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+
+    <style>
+        /* ---------- Page Styling ---------- */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 40px auto;
+            background-color: #ffffff;
+            padding: 25px 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #2e86c1;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        textarea {
+            resize: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Feedback Form</h1>
+        <form>
+            <!-- Name -->
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+            <!-- Email -->
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+
+            <!-- Gender -->
+            <label>Gender:</label>
+            <input type="radio" name="gender" value="male"> Male
+            <input type="radio" name="gender" value="female"> Female
+            <input type="radio" name="gender" value="other"> Other
+
+            <!-- Rating -->
+            <label for="rating">Rate Our Service:</label>
+            <select id="rating" name="rating">
+                <option value="">-- Select --</option>
+                <option value="excellent">Excellent</option>
+                <option value="good">Good</option>
+                <option value="average">Average</option>
+                <option value="poor">Poor</option>
+            </select>
+
+            <!-- Likes -->
+            <label>What did you like about us?</label>
+            <input type="checkbox" name="like" value="service"> Service
+            <input type="checkbox" name="like" value="quality"> Product Quality
+            <input type="checkbox" name="like" value="support"> Customer Support
+            <input type="checkbox" name="like" value="price"> Affordable Price
+
+            <!-- Feedback -->
+            <label for="comments">Your Comments:</label>
+            <textarea id="comments" name="comments" rows="5" placeholder="Write your suggestions or feedback here..."></textarea>
+
+            <!-- Buttons -->
+            <div class="center">
+                <button type="submit">Submit</button>
+                <button type="reset" style="background-color:#e74c3c;">Reset</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

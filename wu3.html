@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback Form</title>
+</head>
+
+<body style="font-family: Arial; background-color: #f2f2f2;">
+
+    <h1 style="text-align:center; color:#2c3e50;">Feedback Form</h1>
+    <hr>
+
+    <form style="background-color:white; width:60%; margin:auto; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1);">
+
+        <label><b>Full Name:</b></label><br>
+        <input type="text" name="name" placeholder="Enter your name" style="width:100%; padding:8px; margin-top:5px;"><br><br>
+
+        <label><b>Email:</b></label><br>
+        <input type="email" name="email" placeholder="Enter your email" style="width:100%; padding:8px; margin-top:5px;"><br><br>
+
+        <label><b>Gender:</b></label><br>
+        <input type="radio" name="gender" value="male"> Male
+        <input type="radio" name="gender" value="female"> Female
+        <input type="radio" name="gender" value="other"> Other<br><br>
+
+        <label><b>Rate Our Service:</b></label><br>
+        <select name="rating" style="width:100%; padding:8px; margin-top:5px;">
+            <option value="excellent">Excellent</option>
+            <option value="good">Good</option>
+            <option value="average">Average</option>
+            <option value="poor">Poor</option>
+        </select><br><br>
+
+        <label><b>What did you like about us?</b></label><br>
+        <input type="checkbox" name="like" value="service"> Service
+        <input type="checkbox" name="like" value="quality"> Quality
+        <input type="checkbox" name="like" value="support"> Support
+        <input type="checkbox" name="like" value="price"> Price<br><br>
+
+        <label><b>Comments / Suggestions:</b></label><br>
+        <textarea name="comments" rows="5" placeholder="Write your feedback here..." style="width:100%; padding:8px; margin-top:5px;"></textarea><br><br>
+
+        <label><b>Upload Screenshot (optional):</b></label><br>
+        <input type="file" name="screenshot"><br><br>
+
+        <input type="submit" value="Submit Feedback" style="background-color:#4CAF50; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">
+        <input type="reset" value="Reset" style="background-color:#e74c3c; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">
+
+    </form>
+
+</body>
+</html>

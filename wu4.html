@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Web Page</title>
+
+    <!-- CSS for styling -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f7;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            width: 50%;
+            margin: auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Welcome to My Interactive Web Page</h1>
+        <p>Enter your name and click the button to see a personalized greeting!</p>
+
+        <input type="text" id="username" placeholder="Enter your name">
+        <button onclick="showMessage()">Say Hello</button>
+
+        <p id="output"></p>
+
+        <hr>
+
+        <p>Click the button below to change the background color:</p>
+        <button onclick="changeColor()">Change Background Color</button>
+    </div>
+
+    <!-- JavaScript for interactivity -->
+    <script>
+        // Function to display a personalized greeting
+        function showMessage() {
+            let name = document.getElementById("username").value;
+            if (name.trim() === "") {
+                document.getElementById("output").innerHTML = "Please enter your name!";
+            } else {
+                document.getElementById("output").innerHTML = "Hello, " + name + "! 👋 Welcome to my page!";
+            }
+        }
+
+        // Function to change the background color randomly
+        function changeColor() {
+            const colors = ["#f9e79f", "#aed6f1", "#d5f5e3", "#f5b7b1", "#d2b4de"];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.backgroundColor = randomColor;
+        }
+    </script>
+
+</body>
+</html>
